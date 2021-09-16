@@ -1,0 +1,38 @@
+  
+  .wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+  }
+  
+  .horizontal-mat-list-item {
+   float: right;
+   display: list-item;
+   margin-left: 30px;
+   gap: 1rem;
+   }
+  
+   div {
+    display: inline-block;
+}
+
+div label {
+    display: block;
+}
+.column {
+  float: left;
+  width: 60%;
+}
+.column2 {
+  float: middle;
+  width: 40%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

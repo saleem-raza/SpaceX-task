@@ -1,0 +1,12 @@
+<mat-card>
+  <h2>Company Profile:</h2>
+  <address>
+    <p> <b> Company:</b> {{company.name}}</p>
+    <p> <b> Founder:</b> {{company.founder}}</p>
+    <p> <b> Founded:</b> {{company.founded}}</p>
+    <p> <b> Employees:</b> {{company.employees}}</p>
+    <p> <b> Website:</b>
+      <a href="{{'#tab_' + company.links.website}}">{{company.links.website}}</a>
+    </p>
+  </address>
+</mat-card>
