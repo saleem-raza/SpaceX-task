@@ -26,5 +26,12 @@ export class SpacexFlightsComponent implements OnInit {
       this.company = companydata;
     });
   }
+  copyAdrress() {
+    return 'Company:' + this.company.name + '\n' +
+      'Founder:' + this.company.founder + '\n' +
+      'Founded:' + this.company.founded + '\n' +
+      'Employees: ' + this.company.employees + '\n' +
+      'Website:' + this.company.links.website + '\n';
+  }
 
 }

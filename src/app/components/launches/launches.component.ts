@@ -12,24 +12,24 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class LaunchesComponent implements OnInit {
   launchList: Launch[] = [];
-  launchSuccess: Launch[] = [];
-  launchfailure: Launch[] = [];
+  launchSuccessList: Launch[] = [];
+  launchfailureList: Launch[] = [];
 
   CrewList: Crew[] = [];
-  capsules: Capsule[] = [];
+  capsulesList: Capsule[] = [];
   capsuleFactsList: CapsuleTypeFreq[] = [];
   crewCount = 0;
   count = 0;
   crewNasa = 0;
   crewJaxa = 0;
- 
-  displayedColumns: string[] = ['id','capsule_type', 'frequency', 'total_launches', 'total_landing_attempt', 'total_water_landings'];
+
+  displayedColumns: string[] = ['id', 'capsule_type', 'frequency', 'total_launches', 'total_landing_attempt', 'total_water_landings'];
   //dataSource = this.capsuleFactsList;
   //dataSource = this.capsuleFactsList;
   dataSource!: MatTableDataSource<CapsuleTypeFreq>;
   //dataSource = new MatTableDataSource<CapsuleTypeFreq>( this.capsuleFactsList);
   constructor(private crudservices: CrudService) {
-   
+
     this.dataSource = new MatTableDataSource<CapsuleTypeFreq>();
   }
 
@@ -38,8 +38,8 @@ export class LaunchesComponent implements OnInit {
     this.getallCapsules();
     this.getallLunches();
     this.getallCrew();
-    
- 
+
+
   }
 
   getallLunches() {
@@ -47,8 +47,8 @@ export class LaunchesComponent implements OnInit {
       this.launchList = data
       // console.log(this.launch);
 
-      this.launchSuccess = this.launchList.filter(data => data.success == true);
-      this.launchfailure = this.launchList.filter(data => data.success == false);
+      this.launchSuccessList = this.launchList.filter(data => data.success == true);
+      this.launchfailureList = this.launchList.filter(data => data.success == false);
       // this.getshiptype(this.launchSuccess);
       this.loadCapsuleCounter();
       this.dataSource.data = this.capsuleFactsList;
@@ -59,7 +59,7 @@ export class LaunchesComponent implements OnInit {
   }
   loadCapsuleCounter() {
     this.loadCapsuleTypes();
-    for (let capsule of this.capsules) {
+    for (let capsule of this.capsulesList) {
 
       console.log('capsuleType:', capsule.type.toString());
       this.showUpdatedItem(capsule);
@@ -68,7 +68,7 @@ export class LaunchesComponent implements OnInit {
   }
   getallCapsules() {
     this.crudservices.getCapsules().subscribe((data: Capsule[]) => {
-      this.capsules = data;
+      this.capsulesList = data;
 
     });
   }
@@ -119,6 +119,17 @@ export class LaunchesComponent implements OnInit {
     this.crewNasa = this.CrewList.filter(item => item.agency == "NASA" && item.launches.length > 0).length;
     this.crewJaxa = this.CrewList.filter(item => item.agency == "SpaceX" && item.launches.length > 0).length;
 
+  }
+  copyTableData() {
+    return JSON.stringify(this.dataSource.data);
+  }
+  copyFacts() {
+    return 'Total launches:' + this.launchList.length + '\n' +
+      'Successful launches:' + this.launchSuccessList.length + '\n' +
+      'Failed launches:' + this.launchfailureList.length + '\n' +
+      'Total crew sent: ' + this.crewCount + '\n' +
+      'crew (NASA) sent:' + this.crewNasa + '\n' +
+      'crew (SPACEX) sent: ' + this.crewJaxa;
   }
 
 }

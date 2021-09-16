@@ -12,6 +12,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { MatCommonModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import {MatCardModule} from '@angular/material/card';
     MatListModule,
     MatTableModule,
     MatCommonModule,
-    MatCardModule
+    MatCardModule,
+    ClipboardModule,
 
   ],
   providers: [],

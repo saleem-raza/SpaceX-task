@@ -1,7 +1,7 @@
 <mat-card>
 
         <h2> Capsule Types Facts:</h2>
-
+        <button [cdkCopyToClipboard]="copyTableData()">Click to Copy</button>
         <table width="100%" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
                 <!-- id Column -->
@@ -44,10 +44,10 @@
         <div class="row">
                 <div class="column">Total launches:</div>
                 <div class="column2">{{this.launchList.length}}</div>
-                <div class="column">  <label>Successful launches:</label> </div>
-                <div class="column2"><label> {{this.launchSuccess.length}}</label> </div>
+                <div class="column"> <label>Successful launches:</label> </div>
+                <div class="column2"><label> {{this.launchSuccessList.length}}</label> </div>
                 <div class="column"><label> Failed launches:</label> </div>
-                <div class="column2"><label> {{this.launchfailure.length}}</label></div>
+                <div class="column2"><label> {{this.launchfailureList.length}}</label></div>
                 <div class="column"> <label>Total crew sent:</label> </div>
                 <div class="column2"> <label> {{crewCount}}</label></div>
                 <div class="column"><label>crew (NASA) sent:</label> </div>
@@ -55,4 +55,5 @@
                 <div class="column"> <label>crew (SPACEX) sent:</label> </div>
                 <div class="column2"><label> {{crewJaxa}}</label> </div>
         </div>
+        <button [cdkCopyToClipboard]="copyFacts()">Click to Copy</button>
 </mat-card>

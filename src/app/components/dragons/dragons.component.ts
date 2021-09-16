@@ -8,28 +8,25 @@ import { CrudService } from 'src/services/services/crud.service';
   styleUrls: ['./dragons.component.css']
 })
 export class DragonsComponent implements OnInit {
-  dragons!: Dragons[];
-  totalLoad=0;
+  dragonsList!: Dragons[];
+  totalLoad = 0;
   constructor(private crudservices: CrudService) { }
 
   ngOnInit(): void {
     this.getDragons();
-   
   }
 
-  getDragons(){
+  getDragons() {
     this.crudservices.getDragons().subscribe((data: Dragons[]) => {
-      this.dragons = data;
+      this.dragonsList = data;
       this.calculateLaunchPayload();
-     });
+    });
     // console.log(JSON.stringify(this.dragons));
   }
-  calculateLaunchPayload(){
-  
-for(let dragon of this.dragons){
-
-  this.totalLoad= this.totalLoad + dragon.launch_payload_mass.kg;
-}
+  calculateLaunchPayload() {
+    for (let dragon of this.dragonsList) {
+      this.totalLoad = this.totalLoad + dragon.launch_payload_mass.kg;
+    }
 
   }
 }
